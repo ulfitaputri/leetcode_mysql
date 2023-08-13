@@ -10,7 +10,8 @@ FROM (
         Employee.salary as employee_salary,
         RANK() OVER (PARTITION BY Employee.departmentId ORDER BY Employee.salary DESC) as salary_rank
     FROM Employee
-    JOIN Department ON Employee.departmentId = Department.id
+    JOIN Department 
+    ON Employee.departmentId = Department.id
 ) as EmployeeRanked
 WHERE salary_rank = 1;
 
